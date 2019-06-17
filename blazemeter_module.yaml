@@ -1,0 +1,5 @@
+---
+modules:
+  blazemeter:
+    test: EXPOQA Test
+    project: Taurus Demo Tests
