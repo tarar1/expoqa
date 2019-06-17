@@ -1,0 +1,6 @@
+provisioning: cloud
+
+modules:
+  cloud:
+    test: Taurus Test Training expoqa
+    project: Taurus Training

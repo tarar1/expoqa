@@ -1,0 +1,34 @@
+scenarios:
+  Demoblaze:
+    headers:
+      Content-Type: application/json
+    retrieve-resources: false
+    variables:
+      domain: https://www.demoblaze.com 
+      api_domain: https://api.demoblaze.com 
+      id: 8  
+    data-sources:
+    - path: 'users_training.csv'
+      delimiter: ', '
+      variable-names: username,password
+    requests:
+    - label: Homepage
+      method: GET
+      url: ${domain}
+    - label: viewitem_api_${id}
+      method: POST
+      url: ${api_domain}/view
+      body: '{"id":"${id}"}'
+      assert:
+        - contains:
+          - '{"img":(.+?),"id":${id},"price":(.+?)'
+          subject: body
+          regexp: true
+    - label: Login
+      method: POST
+      url: '${api_domain}/login'
+      headers:
+        Accept: '*/*'
+        Content-Type: application/json
+      body: '{"username":"${username}","password":"${__base64Encode(${password})}"}'
+         
