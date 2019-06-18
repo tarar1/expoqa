@@ -3,8 +3,8 @@ execution:
 - executor: jmeter
   concurrency: 
     local: 10
-    cloud: 100
-  hold-for: 10m
+    cloud: 20
+  hold-for: 2m
   ramp-up: 30s
   locations:
     us-west-1: 2 
